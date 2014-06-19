@@ -21,8 +21,45 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Application API definition:
+app.route('/api/:action*')
+.all(function(req, res, next) {
+  // runs for all HTTP verbs first
+  // think of it as route specific middleware!
+  
+  //console.log( 'authentication...' );
+  
+  next();
+})
+.get(function(req, res, next) {
+    //console.log('GET method' , req);
+
+    // Get the full GET actions definition:
+    var actions = require('./routes/get');
+    
+    // Get the action name:
+    var action = req.params.action;
+    if ( 'function' === typeof(actions[req.params.action]) ) {
+        
+        // Calling the action:
+        actions[action](req, res, next);
+    
+        
+    } else {
+        var err = new Error('Not Found');
+        err.status = 404;
+        next(err);
+    }
+    
+    
+})
+.post(function(req, res, next) {
+  // maybe add a new event...
+})
+
 app.use('/', routes);
 app.use('/users', users);
+
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

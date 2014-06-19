@@ -20,7 +20,7 @@ var api = {
             var stdout = '';
  
             // Execute the child spawn:
-            mocha = spawn('mocha', [ '-R', 'json' , './test/' + ( file ? file : '' ) ]);
+            mocha = spawn('mocha', [ '--recursive' , '-R', 'json' , './test/' + ( file ? file : '' ) ]);
             
             // Read and update the stdout buffer data:
             mocha.stdout.on('data', function(data) {

@@ -6,7 +6,6 @@ var api = {
     // Initialization:
     _init: function() {
         
-        
     },
     
     // Get the output object:

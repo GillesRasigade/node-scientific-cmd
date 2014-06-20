@@ -1,9 +1,17 @@
 {
-  "name": "api",
+  "name": "node-scientific-cmd",
   "version": "0.0.1",
+  "description": "Node.js scientific command line",
+  "author": "Gilles Rasigade",
   "private": true,
+  "main": "app.s",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/billou-fr/node-scientific-cmd.git"
   },
   "dependencies": {
     "express": "~4.2.0",
